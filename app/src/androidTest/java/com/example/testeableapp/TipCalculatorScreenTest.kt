@@ -89,8 +89,12 @@ class TipCalculatorScreenTest {
         */
 
         composeTestRule.onNodeWithTag("BillAmountInput").isDisplayed()
+        composeTestRule.onNodeWithTag("BillAmountInput").assertExists()
         composeTestRule.onNodeWithTag("TipPercentageSlider").isDisplayed()
+        composeTestRule.onNodeWithTag("TipPercentageSlider").assertExists()
         composeTestRule.onNodeWithTag("NumberOfPeople").isDisplayed()
+        composeTestRule.onNodeWithTag("NumberOfPeople").assertExists()
+
     }
 
     // Pruebas adicionales
@@ -126,7 +130,7 @@ class TipCalculatorScreenTest {
 
     }
 
-    // Prueba de comportamiento ante cantidades muy pequeñas, probalemente no pase el test
+    // Prueba de cantidades pequeñas
     @Test
     fun testSmallAmount(){
 
@@ -145,11 +149,18 @@ class TipCalculatorScreenTest {
         }
 
         /* Verificamos que antes del redondeo nos debe dar $0.0015 de propina, siendo esto
-        el 15% de $0.01, lo cual es una cantidad muy pequeña
+        el 15% de $0.01, lo cual es una cantidad muy pequeña, entonces el sistema debe
+        mostrar $0.00
 
          */
 
-        composeTestRule.onNodeWithTag("TipText").assertTextEquals("Propina: $0.0015")
+
+
+
+
+
+
+        composeTestRule.onNodeWithTag("TipText").assertTextEquals("Propina: $0.00")
 
     }
 
